@@ -1,11 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+const InitialCapital=({dataCoin, setDataCoin, setSeeUpdateCapital})=>{
+   const [db, setDb]=useState({});
+   const[capital, setCapital]=useState(0);
+   const data_test=dataCoin;
 
-const InitialCapital=({navigation, route})=>{
-   const [capitalInitial, setCapitalInitial]=useState('');
-   const saveCuotas=()=>{
-     console.log('Guardando Cuotas...')
+   // actualizo el capital
+   data_test.capitalInitial=capital;
+   var total=0;
+   data_test.expenses.forEach((item, i) => {
+   total+=parseFloat(item.spending);
+  });
+   const total_expense=total
+   // actualizo el saldo
+   data_test.saldo=capital-total_expense;
+   data_test.dataChart[8].population=data_test.saldo
+   const dataUpdate={'dataStorage':data_test}
+   const updateCapital=()=>{
+      setSeeUpdateCapital(false);
+      setDataCoin(data_test);
    };
   return(
     <>
@@ -21,22 +36,21 @@ const InitialCapital=({navigation, route})=>{
           </Text>
           <TextInput
             style={styles.textInput}
-            onChangeText={text=> setCapitalInitial(text)}
-            value={capitalInitial}
+            onChangeText={text=> setCapital(text)}
           />
           <View style={styles.btnSave}>
           <Button
             title="Update"
-            onPress={()=>saveCuotas()}
+            onPress={()=>updateCapital()}
           />
           </View>
         </View>
         <View style={styles.detailBox}>
           <Text style={styles.detailText}>
-            Antes de comenzar a operar debe ingresar el monto inicial que
-            dispone para que se comience a "debitar" y llevar un control a
-            partir de ese monto. Lo cual incluye alertas de gastos y seguimiento
-            de cada uno de los gastos que realice siempre y cuando lo anote en la app.-
+            El capital inicial se utiliza para poder realizar los
+            calculos en base a ese valor. Este valor lo puede editar
+            en cualquier momento pero afectara al resto de los calculos
+            que se realicen a partir de ese momento.
           </Text>
         </View>
       </View>
@@ -55,7 +69,7 @@ const styles=StyleSheet.create({
     marginTop:15,
     marginBottom:15,
     borderRadius:15,
-    borderWidth: 3,
+    borderWidth: 1,
   },
   detailBox:{
     backgroundColor:'#FFF',
@@ -65,7 +79,7 @@ const styles=StyleSheet.create({
     marginTop:15,
     marginBottom:15,
     borderRadius:15,
-    borderWidth: 3,
+    borderWidth: 1,
   },
   textTittle:{
     textAlign:'center',

@@ -6,7 +6,7 @@ const Cuotas=()=>{
   return (
     <>
     <View>
-      <Text>Aca podras ver y editar tus cuotas.</Text>
+      <Text>Aca podras ver y editar tus cuotas. {dataCoin.capitalInitial}</Text>
     </View>
     </>
   );

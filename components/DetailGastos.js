@@ -1,52 +1,26 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-const DetailGastos=()=>{
+import Accordion from './Accordion';
+import DataCoin from './DataCoin';
+const DetailGastos=({dataCoin, setDataCoin})=>{
+  const [seeAccordion, setSeeAccordion]=useState(false);
+
   const seeDetails=()=>{
     console.log('Presionando Transporte')
   }
+  //console.log('datos de datacoin')
+  //console.log(dataCoin.dataChart)
+  //dataCoin.dataChart.map((item, id)=>{
+    //console.log(item.name)
+    //console.log(id)
+  //})
+  //console.log('datos de datacoin')
   return(
     <>
     <View style={styles.container}>
-    <View style={styles.detailCard, styles.borderTop}>
-      <Text style={styles.titleCard}>
-        <Icon name="chevron-circle-right" size={20} color="#000000" /> Salud
-      </Text>
-    </View>
-    <TouchableHighlight onPress={()=>seeDetails()}>
-    <View style={styles.detailCard, styles.borderMidle}>
-
-      <Text style={styles.titleCard}>
-        <Icon name="chevron-circle-right" size={20} color="#000000" /> Transporte
-      </Text>
-    </View>
-    </TouchableHighlight>
-    <View style={styles.detailCard, styles.borderMidle}>
-      <Text style={styles.titleCard}>
-        <Icon name="chevron-circle-right" size={20} color="#000000" /> Salida
-      </Text>
-    </View>
-    <View style={styles.detailCard, styles.borderMidle}>
-      <Text style={styles.titleCard}>
-         <Icon name="chevron-circle-right" size={20} color="#000000" /> Panaderia
-      </Text>
-    </View>
-    <View style={styles.detailCard, styles.borderMidle}>
-      <Text style={styles.titleCard}>
-        <Icon name="chevron-circle-right" size={20} color="#000000" /> Verduleria
-      </Text>
-    </View>
-    <View style={styles.detailCard, styles.borderMidle}>
-      <Text style={styles.titleCard}>
-        <Icon name="chevron-circle-right" size={20} color="#000000" /> Otros
-      </Text>
-    </View>
-    <View style={styles.detailCard, styles.borderButtom}>
-      <Text style={styles.titleCard}>
-        <Icon name="chevron-circle-right" size={20} color="#3987c1" /> Otros
-      </Text>
-    </View>
+    <Accordion dataCoin={dataCoin} setDataCoin={setDataCoin} />
     </View>
     </>
   );

@@ -60,18 +60,18 @@ const DuesDetails=()=>{
       />
       <Text style={styles.label}>¿Cuantas cuotas?</Text>
       <Picker
+        style={{backgroundColor:'#DADAD8'}}
         selectedValue={cuotas}
         onValueChange={(itemValue, itemIndex) =>
           setCuotas(itemValue)
         }>
-        <Picker.Item label="- Seleccione -" value="" />
-        <Picker.Item label="1" value="1" />
-        <Picker.Item label="2" value="2" />
-        <Picker.Item label="3" value="3" />
-        <Picker.Item label="6" value="6" />
-        <Picker.Item label="12" value="12" />
-        <Picker.Item label="18" value="18" />
-        <Picker.Item label="24" value="24" />
+          <Picker.Item label='1 Cuota' value='1' />
+          <Picker.Item label='2 Cuotas' value='2' />
+          <Picker.Item label='3 Cuotas' value='3' />
+          <Picker.Item label='6 Cuotas' value='6' />
+          <Picker.Item label='12 Cuotas' value='12' />
+          <Picker.Item label='18 Cuotas' value='18' />
+          <Picker.Item label='24 Cuotas' value='24' />
         </Picker>
       <Button
         title="Guardar"
@@ -91,7 +91,7 @@ const styles=StyleSheet.create({
     marginTop:15,
     marginBottom:15,
     borderRadius:15,
-    borderWidth: 3,
+    borderWidth: 1,
     },
   title:{
     textAlign:'center',
@@ -107,7 +107,7 @@ const styles=StyleSheet.create({
     borderStyle:'solid',
     marginBottom:15,
     borderRadius:10,
-    borderWidth: 3,
+    borderWidth: 1,
     textAlign:'center',
     fontSize:15,
   },
